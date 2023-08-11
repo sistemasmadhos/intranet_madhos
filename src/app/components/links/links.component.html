@@ -1,0 +1,35 @@
+<div class="row my_container container_documents" style="margin-top: 90px;">
+
+    <div id="containerTableLinks" class="col-md-12">
+
+
+
+        <div class="card border-light">
+            <div class="card-header">Enlaces
+
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" >Nombre</th>
+                    <th scope="col" width="20%">Url</th>
+                    <th scope="col" width="150px">Accion</th>
+                </tr>
+            </thead>
+            <tbody id="tableDocumentsBody">
+                <tr *ngFor="let link of links;let i = index">
+                    <td scope="row" style="font-size: 12.5px;">{{ link.nombre }}</td>
+                    <td scope="row" style="font-size: 12.5px;"><a target="_blank" [href]="link.enlace">{{ link.enlace }}</a></td>
+                    <td align="center">
+                        <a target="_blank" [href]="link.enlace" style="padding: 2px 6px;margin-right: 4px;" class="btn btn-outline-primary"  >
+                            <i class="fa fa-internet-explorer"></i>
+                        </a>                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- INICIA MODAL SITIO EN CONSTRUCCIÓN -->

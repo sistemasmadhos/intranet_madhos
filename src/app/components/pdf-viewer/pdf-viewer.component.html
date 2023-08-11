@@ -1,0 +1,33 @@
+<div id="app">
+    <div role="toolbar" id="toolbar">
+        <div id="pager">
+            <button data-pager="prev" (click)="disminuir()">prev </button>
+            <button data-pager="next" (click)="aumentar()">next</button>
+        </div>
+        <!-- <div id="page-mode">
+            <label>Page Mode <input type="number" value="1" min="1" /></label>
+        </div> -->
+        <div id="zoom">
+            <button data-zoom="zoom-in" (click)="zoom2()">
+                <i data-zoom="zoom-in" class="fa fa-search-plus"></i>
+            </button>
+            <button data-zoom="zoom-out" (click)="zoom1()">
+                <i data-zoom="zoom-in" class="fa fa-search-minus"></i>
+            </button>
+        </div>
+
+    </div>
+    <div *ngIf="urlDocument ? true : false" id="viewport-container">
+        <div style="margin-top:10px;" role="main" id="viewport">
+            <pdf-viewer [src]='pdfSrc'
+            [render-text] = 'true'
+            [show-all] = 'false'
+            [stick-to-page]="true"
+            [page] = pag
+            [zoom]= zom
+            style='display:block;'
+             >
+            </pdf-viewer>
+        </div>
+    </div>
+</div>

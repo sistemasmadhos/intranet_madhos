@@ -1,0 +1,162 @@
+<div class="row my_container container_documents" style="margin-top: 90px;">
+
+    <div id="containerTablesDocs" class="col-md-12">
+
+        <!-- <div>
+            <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+        </div> -->
+
+        <div class="card border-light">
+            <div class="card-header">Administraciòn de {{type != 'manuales' ? 'Archivos' : 'Manuales'}}
+                <div class="pull-right">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#crearDocumento"><i class="fa fa-plus"></i> Agregar {{ MODULO }}</button>&nbsp;
+                  </div>
+            </div>
+            <div class="card-body" *ngIf="type != 'manuales'">
+                <div class="row">
+                    <div class="col-md-4">
+                        <ng-multiselect-dropdown
+                            [placeholder]="'Seleciona el area'"
+                            [data]="areasList"
+                            [(ngModel)]="areaItem"
+                            [settings]="areasSettings"
+                            (onSelect)="seleccionArea($event)"
+                        >
+                        </ng-multiselect-dropdown>
+                    </div>
+                    <div class="col-md-4">
+                        <ng-multiselect-dropdown
+                            [placeholder]="'Seleciona la cabecera'"
+                            [data]="cabeceraList"
+                            [(ngModel)]="cabeceraItem"
+                            [settings]="cabeceraSettings"
+                            (onSelect)="seleccionCabecera($event)"
+                        >
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered" *ngFor="let cabeceraDocuments of documents">
+            <thead>
+                <tr>
+                    <th scope="col" width="120px">Código</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col" width="140px">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tableDocumentsBody">
+                <!-- <app-row-table-documents></app-row-table-documents> de el area {{ areaName }}  -->
+                <tr *ngFor="let rowDocuments of cabeceraDocuments;let i = index">
+                    <th scope="row" style="font-size: 12.5px;">{{ rowDocuments.codigo }}</th>
+                    <td style="font-size: 12.5px;">{{ rowDocuments.titulo }}</td>
+                    <td>
+                        
+                        <button type="button" style="padding: 2px 6px;margin-right: 4px;" class="btn btn-outline-success" (click) = "downloadPdf(rowDocuments.url, rowDocuments.area_id)">
+                            <i class="fa fa-arrow-circle-down"></i>
+                        </button>
+                        <button type="button" style="padding: 2px 6px;margin-right: 4px;" class="btn btn-outline-warning" data-toggle="modal" data-target="#crearDocumento" (click) = "setDocumentoId(rowDocuments)">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                        <button type="button" id="pdf_1" style="padding: 2px 8px;" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmation-modal" (click)="delete(rowDocuments.id, i, rowDocuments.codigo)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- INICIA MODAL SITIO EN CONSTRUCCIÓN -->
+
+<div class="modal fade" id="crearDocumento" tabindex="-1" role="dialog" aria-labelledby="crearDocumento" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="crearDocumento">{{ documentoId ? 'Editar' : 'Agregar' }} {{ MODULO }}</h5>
+                <button type="button"  (click)="cerrar()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row" *ngIf="type != 'manuales'">
+                    <div class="col-md-6">
+                        <ng-multiselect-dropdown
+                            [placeholder]="'Seleciona el area'"
+                            [data]="areasList"
+                            [(ngModel)]="areaItem"
+                            [settings]="areasSettings"
+                            (onSelect)="seleccionArea($event)"
+                            [disabled]="documentoId ? true : false"
+                        >
+                        </ng-multiselect-dropdown>
+                    </div>
+                    <div class="col-md-6">
+                        <ng-multiselect-dropdown
+                            [placeholder]="'Seleciona la cabecera'"
+                            [data]="cabeceraList"
+                            [(ngModel)]="cabeceraItem"
+                            [settings]="cabeceraSettings"
+                            (onSelect)="seleccionCabecera($event)"
+                            [disabled]="documentoId ? true : false"
+                        >
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <!-- <div class="col-md-12" style="align-content: center;">
+                        <img height="200" width="180" src="../../../assets/Cloud-Upload-Blue.png" alt="Second slide">
+                    </div> -->
+                    <div class="col-md-6">
+                        <input [(ngModel)]="codigo" #ctrl="ngModel"  type="text" id="user" class="form-control" placeholder="{{'Codigo ' +  this.MODULO}}" required>
+                    </div>
+                    <div class="input-group col-md-6">
+
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01"  (change)="handleFileInput($event, $event.target.files)" lang="es">
+                            <label class="custom-file-label" for="customFileLang">{{ fileToUpload ? fileToUpload.name : '' }}</label>
+                        </div>
+                          
+                          
+                      </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea  [(ngModel)]="nombre" #ctrl="ngModel" class="form-control" id="exampleFormControlTextarea1" placeholder="{{'Nombre ' +  this.MODULO}}" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="documentoId ? editarDocumento() : crearDocumento()" [disabled]="send">{{ documentoId ? 'Editar' : 'Crear' }}</button>
+                <button type="button" class="btn btn-light" id="btn-close" data-dismiss="modal" (click)="cerrar()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="confirmation-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmation-modal">Eliminar Enlace</h5>
+                <button type="button"  (click)="cerrar()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea eliminar el {{type != 'manuales' ? 'documento' : 'manual'}}  "{{codigo}}"?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btn-close" data-dismiss="modal" (click)="cerrar()">No</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"  (click)="deleteDocument()">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- FINALIZA MODAL SITIO EN CONSTRUCCIÓN -->

@@ -1,0 +1,118 @@
+<div class="row my_container container_documents" style="margin-top: 90px;">
+
+    <div id="containerTablesDocs" class="col-md-12">
+
+
+
+        <div class="card border-light">
+            <div class="card-header">Administraciòn de Anuncios
+                <div class="pull-right">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#crearDocumento"><i class="fa fa-plus"></i> Agregar Anuncio</button>&nbsp;
+                  </div>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Archivo</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tableDocumentsBody">
+                <tr *ngFor="let anounce of anounces;let i = index">
+                    <td scope="row" style="font-size: 12.5px;">{{ anounce.titulo }}</td>
+                    <td scope="row" style="font-size: 12.5px;">{{ anounce.descripcion }}</td>
+                    <td scope="row" style="font-size: 12.5px;">{{ anounce.url }}</td>
+                    <td style="font-size: 12.5px;" align="center"><button type="button" class="btn btn-outline-info" [class]="'btn btn-' + (anounce.tipo == 'img' ? 'success' : 'info')"><i [class]="'fa fa-' + (anounce.tipo == 'img' ? 'file-image-o' : 'video-camera')"></i> {{ anounce.tipo }}</button></td>
+                    <td align="center">
+                        <button type="button" style="padding: 2px 6px;margin-right: 4px;" class="btn btn-outline-success" (click) = "downloadPdf(anounce.url)">
+                            <i class="fa fa-arrow-circle-down"></i>
+                        </button>
+                        <!-- <button type="button" style="padding: 2px 6px;margin-right: 4px;" class="btn btn-outline-warning" data-toggle="modal" data-target="#crearDocumento" >
+                            <i class="fa fa-eye"></i>
+                        </button> -->
+                        <button type="button" id="pdf_1" style="padding: 2px 8px;" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmation-modal" (click)="delete(anounce.id, i, anounce.titulo)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- INICIA MODAL SITIO EN CONSTRUCCIÓN -->
+
+<div class="modal fade" id="crearDocumento" tabindex="-1" role="dialog" aria-labelledby="crearDocumento" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="crearDocumento">Crear Anuncio</h5>
+                <button type="button"  (click)="cerrar()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="input-group col-md-12">
+                        <div class="custom-file">
+                            <input type="file"  accept="image/x-png,image/gif,image/jpeg,video/mp4"  class="custom-file-input" id="inputGroupFile01"  (change)="handleFileInput($event, $event.target.files)" lang="es">
+                            <label class="custom-file-label" for="customFileLang">{{ fileToUpload ? fileToUpload.name : '' }}</label>
+                        </div> 
+                        <small class="form-text text-muted" id="passwordHelpBlock"> Por efectos visuales el ancho de la imagen debe estar entre 1150 - 1500 pixles y su alto entre 500 - 700 pixles. </small>
+                        <small class="form-text text-muted" id="passwordHelpBlock"> url: https://www.img2go.com/es/cambiar-tamano-de-imagen </small> 
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input [(ngModel)]="title" #ctrl="ngModel"  type="text" id="user" class="form-control" placeholder="Titulo del anuncio" required>
+                        <small class="form-text text-muted" id="passwordHelpBlock"> Tanto el titulo como la descripción son opcionales. </small>
+                    </div>                    
+                </div>
+                <br>
+                <div class="row">
+                    <div class="input-group col-md-12">
+                        <textarea  [(ngModel)]="description" #ctrl="ngModel" class="form-control" id="exampleFormControlTextarea1" placeholder="Descripción Anuncio" rows="2"></textarea> 
+                      </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input [(ngModel)]="interval" #ctrl="ngModel"  type="number" id="interval" class="form-control" placeholder="Duracion Segs" required>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="crearAnuncio()" [disabled]="send">Crear</button>
+                <button type="button" class="btn btn-light" id="btn-close" data-dismiss="modal" (click)="cerrar()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="confirmation-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmation-modal">Eliminar Enlace</h5>
+                <button type="button"  (click)="cerrar()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea eliminar el anuncio  "{{title}}"?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btn-close" data-dismiss="modal" (click)="cerrar()">No</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"  (click)="deleteAnounce()">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FINALIZA MODAL SITIO EN CONSTRUCCIÓN -->

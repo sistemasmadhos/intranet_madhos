@@ -1,0 +1,25 @@
+.carousel-caption{
+    opacity:0;
+    transition:500ms ease-in-out;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+    background: #fffffff5;
+    border-radius: 20px;
+    width: auto;
+    padding: 15px 23px;
+    margin: 0 auto;
+    border: solid #80808059;
+  }
+  .carousel-item:hover .carousel-caption{
+    opacity:1;
+  }
+
+  .item{
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+
+
+  

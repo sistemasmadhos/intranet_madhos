@@ -1,0 +1,111 @@
+<div class="row my_container container_documents" style="margin-top: 90px;">
+
+    <div id="containerTableLinks" class="col-md-12">
+
+
+
+        <div class="card border-light">
+            <div class="card-header">Administraciòn Enlaces
+                <div class="pull-right">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-link"><i class="fa fa-plus"></i> Agregar Enlaces</button>&nbsp;
+                  </div>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" >Nombre</th>
+                    <th scope="col" width="20%">Url</th>
+                    <th scope="col" width="150px">Accion</th>
+                </tr>
+            </thead>
+            <tbody id="tableDocumentsBody">
+                <tr *ngFor="let link of links;let i = index">
+                    <td scope="row" style="font-size: 12.5px;">{{ link.nombre }}</td>
+                    <td scope="row" style="font-size: 12.5px;"><a target="_blank" [href]="link.enlace">{{ link.enlace }}</a></td>
+                    <td align="center">
+                        <a target="_blank" [href]="link.enlace" style="padding: 2px 6px;margin-right: 4px;" class="btn btn-outline-primary"  >
+                            <i class="fa fa-internet-explorer"></i>
+                        </a>
+                        <button type="button" style="padding: 2px 6px;margin-right: 4px;" class="btn btn-outline-warning" data-toggle="modal" data-target="#create-link" (click) = "setLinkId(link)">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                        <button type="button" id="pdf_1" style="padding: 2px 8px;" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmation-modal"  (click)="delete(link.id, i, link.nombre)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- INICIA MODAL SITIO EN CONSTRUCCIÓN -->
+
+<div class="modal fade" id="create-link" tabindex="-1" role="dialog" aria-labelledby="create-link" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="create-link">{{ id ? 'Editar' : 'Crear' }} Enlace</h5>
+                <button type="button"  (click)="cerrar()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input [(ngModel)]="name" #ctrl="ngModel"  type="text" id="name" class="form-control" placeholder="Nombre del enlace" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input [(ngModel)]="link" #ctrl="ngModel"  type="text" id="link" class="form-control" placeholder="Url del enlace" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="input-group col-md-12">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="img" (change)="handleFileInput($event, $event.target.files)" lang="es">
+                            <label class="custom-file-label" for="customFileLang">{{ fileToUpload ? fileToUpload.name : '' }}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="createLink()" [disabled]="send">{{ id ? 'Editar' : 'Crear' }}</button>
+                <button type="button" class="btn btn-light" id="btn-close" data-dismiss="modal" (click)="cerrar()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="confirmation-modal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmation-modal">Eliminar Enlace</h5>
+                <button type="button"  (click)="cerrar()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea eliminar el enlace  "{{name}}"?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btn-close" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"  (click)="deleteLink()">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- FINALIZA MODAL SITIO EN CONSTRUCCIÓN -->

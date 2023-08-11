@@ -1,0 +1,14 @@
+<div>
+  <div *ngIf="readLocalStorageValue('token');else elseBlock">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  </div>
+  <ng-template #elseBlock>
+    <app-header-index></app-header-index>
+    <router-outlet></router-outlet>
+  </ng-template>
+  <router-outlet></router-outlet>
+  <!--<app-container-module></app-container-module>-->
+</div>
+
+

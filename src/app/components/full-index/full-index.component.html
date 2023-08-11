@@ -1,0 +1,178 @@
+
+<div>
+    <!-- INICIA CAROUSEL -->
+    <section class="banner_section_container">
+
+        <img class="img_banner_height_setter" src="../../../assets/slide_1_a.jpg" alt="">
+
+        <div id="carouselExampleControls" data-interval="1000" class="carousel slide slide_index" data-ride="carousel">
+            <div class="carousel-inner">
+                <div [class]="'carousel-item' + (first ? ' active' : '')" [attr.data-interval]="anounce.intervalo * 1000" *ngFor="let anounce of anounces;let first = first;let i = index;"> <!--  style="visibility: hidden !important;" -->
+                    <img *ngIf="anounce.tipo == 'img'" class="d-block img_100" src="{{host + 'api/anounces/' + anounce.url}}">
+                    <div *ngIf="anounce.tipo == 'video'" class="video">
+                        <video [id]="'vid-' + i" class="d-block" style="width: 70%;height: 80%;" controls autoplay   (ended)="continue()">
+                            <source src="{{host + 'api/anounces/' + anounce.url}}"  type="video/mp4">
+                            <source src="mov_bbb.ogg" type="video/ogg">
+                            Your browser does not support HTML video.
+                        </video>
+                    </div>
+                    <div class="carousel-caption caption" *ngIf="anounce.titulo || anounce.descripcion">
+                            <a href="#"><h3>{{ anounce.titulo}}</h3></a>
+                            <p style="color: black;">{{ anounce.descripcion}}</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <img src="../../../assets/arrow_prev.png" alt="prev">
+                <!--<span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" id="carousel-next" data-slide="next">
+                <img src="../../../assets/arrow_next.png" alt="next">
+                <!--<span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+
+    </section>
+    <!-- FINALIZA CAROUSEL -->
+    <div id="divHolaMundo">
+        
+    </div>
+
+    <!-- INICIA SECCIÓN SOBRE NOSOTROS -->
+    <section id="nosotros_section" class="about_section_container my_container">
+
+        <section class="my_row">
+
+            <aside id="nosotros" class="about_text_container">
+                <span class="about_title">Sobre Nosotros</span>
+                <span class="about_blue_line"></span>
+                <p class="about_text">
+                    Somos una empresa dedicada a la importación,
+                    comercialización y distribución de dispositivos médicos para el
+                    sector salud, que busca ser parte fundamental del
+                    mejoramiento de calidad de vida de la población, con altos
+                    índices de efectividad, con énfasis en la seguridad del paciente
+                    a través de un talento humano comprometido, calificado y con
+                    vocación de servicio.
+                </p>
+            </aside>
+            <aside class="about_text_container">
+                <span class="about_title">Política de Calidad</span>
+                <span class="about_blue_line"></span>
+                <p class="about_text">
+                    Es política de Madhos S.A.S. fidelizar a nuestros clientes y
+                    proveedores, creando una cultura organizacional, orientada a
+                    la excelencia en el servicio, cumpliendo los requisitos
+                    aplicables y mejorando continuamente cada uno de nuestros
+                    procesos.
+                </p>
+            </aside>
+
+        </section>
+
+        <section class="my_row">
+
+            <aside class="about_text_container">
+                <span class="about_title">Misión</span>
+                <span class="about_blue_line"></span>
+                <p class="about_text">
+                    Somos una empresa que importa, comercializa y distribuye
+                    para el sector salud dispositivos médicos de alta tecnología y
+                    con altos estándares de calidad en cada uno de nuestros
+                    procesos, con un equipo humano comprometido, integro y
+                    competente que busca siempre mejorar la calidad de vida de
+                    la población.
+                </p>
+            </aside>
+            <aside class="about_text_container">
+                <span class="about_title">Visión</span>
+                <span class="about_blue_line"></span>
+                <p class="about_text">
+                    Ser reconocidos en el mercado nacional e internacional por
+                    ser una compañía líder en la importación, comercialización y
+                    distribución de dispositivos médicos para el sector salud.
+                    Fortaleciendo la eficacia de los procesos, el desarrollo del
+                    talento humano y la rentabilidad de la empresa;
+                    contribuyendo así al mejoramiento de la calidad de vida de
+                    los usuarios.
+                </p>
+            </aside>
+
+        </section>
+
+
+    </section>
+    <!-- FINALIZA SECCIÓN SOBRE NOSOTROS -->
+
+    <!-- INICIA SECCIÓN SOBRE CONTACTO -->
+    <section id="contact_section" class="contact_section_container">
+
+        <section class="my_container center_auto">
+            <aside class="centered_title_container">
+                <span class="about_title_contact">Contacto</span>
+                <span class="about_blue_line bg-light"></span>
+            </aside>
+
+            <aside class="contact_centered_container">
+                <div class="form_container">
+                    <form action="">
+                        <div class="form-group row">
+                            <input type="text" class="form-control form-control-lg" placeholder="Nombre">
+                        </div>
+                        <div class="form-group row">
+                            <input type="text" class="form-control form-control-lg" placeholder="Email">
+                        </div>
+                        <div class="form-group row">
+                            <textarea rows="4" cols="50" class="form-control form-control-lg"
+                                placeholder="Mensaje"></textarea>
+                        </div>
+                        <div class="form-group row">
+                            <button type="submit"
+                                class="btn btn-primary custom_btn_blue_white form-control-lg btn-block">Enviar</button>
+                        </div>
+                    </form>
+                    <ul class="contact_info_list">
+                        <li>
+                            Calle. 9 B No. 42 30. Los Cámbulos
+                        </li>
+                        <li>
+                            info@madhos.co
+                        </li>
+                    </ul>
+                </div>
+                <!--<ul class="contact_info_list">
+                    <li>
+                        <img src="./img/logo_madhos_header_1.png" alt="logo_madhos_contact">
+                    </li>
+                    <li>
+                        Carrera 70 # 58 -16. Los Cámbulos
+                    </li>
+                    <li>
+                        madhosadmin@madhos.com
+                    </li>
+                    <li>
+                        (+57) 314 896 3256
+                    </li>
+                </ul>-->
+            </aside>
+        </section>
+
+    </section>
+    <!-- FINALIZA SECCIÓN SOBRE CONTACTO -->
+
+    <!-- INICIA SECCIÓN DERECHOS RESERVADOS -->
+    <footer class="footer_rights_reserved">
+        <p class="footer_text">
+            Política de Privacidad | Política de Uso | Reglamento MADHOS <br />
+            Todos los usuarios de nuestros servicios en línea sujeta a la Declaración de Privacidad y acepta quedar
+            obligado por los Términos de Servicio. <br />
+            © 2019 MADHOS Todos los derechos reservados. <br />
+        </p>
+    </footer>
+    <!-- FINALIZA SECCIÓN DERECHOS RESERVADOS -->
+
+</div>
+

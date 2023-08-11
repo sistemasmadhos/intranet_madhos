@@ -1,0 +1,41 @@
+<div id="containerTablesDocs" class="col-md-6 col-lg-5">
+
+    <div>
+        <!-- <app-table-documents *ngFor="let cabeceraDocuments of documents" [documents]="documents"></app-table-documents> -->
+        <table class="table table-bordered" *ngFor="let cabeceraDocuments of documents">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="3" class="title_table_gray">{{ cabeceraDocuments[0].cabecera_titulo }}</th>
+                </tr>
+                <tr>
+                    <th scope="col" width="50px">Código</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col" width="114px">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tableDocumentsBody">
+                <!-- <app-row-table-documents></app-row-table-documents>  el area es {{ message }}-->
+                <tr *ngFor="let rowDocuments of cabeceraDocuments">
+                    <th scope="row">{{ rowDocuments.codigo }}</th>
+                    <td>{{ rowDocuments.titulo }}</td>
+                    <td>
+                        <button type="button" id="pdf_1" class="btn btn-outline-primary">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-success"><i class="fa fa-arrow-circle-down"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div class="col-md-6 col-lg-7">
+    <div class="pdf_container_frame">
+        <!-- Visor de pdf -->
+        <app-pdf-viewer></app-pdf-viewer>
+
+    </div>
+</div>

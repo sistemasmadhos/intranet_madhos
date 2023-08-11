@@ -1,0 +1,25 @@
+.respHeader {
+    width: 100%;
+    background: #ffffffe0;
+    position: relative;
+    /*top: 0px;*/
+    /*left: 0px;*/
+    z-index: 900;
+    border-bottom: solid 4px #00C4EF;
+}
+
+.container_documents{
+    margin:20px auto 0px auto;
+}
+
+.pdf_container_frame {
+    border: 3px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 14px;
+    padding: 20px;
+    min-height: 100%;
+}
+
+.title_table_gray{
+    background-color: #eeeeee;
+}

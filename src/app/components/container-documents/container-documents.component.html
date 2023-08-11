@@ -1,0 +1,41 @@
+<div class="row my_container container_documents" style="margin-top: 90px;">
+
+    <div id="containerTablesDocs" class="col-md-6 col-lg-5">
+
+        <div>
+            <!-- <app-table-documents *ngFor="let cabeceraDocuments of documents" [documents]="documents"></app-table-documents> -->
+            <table class="table table-bordered" *ngFor="let cabeceraDocuments of documents">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="3" class="title_table_gray">{{ areaId == -1 ? 'Manuales' : cabeceraDocuments[0].cabecera_titulo + ' de el area ' + areaName }} </th>
+                    </tr>
+                    <tr>
+                        <th scope="col" width="120px">Código</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col" width="114px">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tableDocumentsBody">
+                    <!-- <app-row-table-documents></app-row-table-documents> -->
+                    <tr *ngFor="let rowDocuments of cabeceraDocuments">
+                        <th scope="row" style="font-size: 12.5px;">{{ rowDocuments.codigo }}</th>
+                        <td style="font-size: 12.5px;">{{ rowDocuments.titulo }}</td>
+                        <td>
+                            <button type="button" id="pdf_1" style="padding: 2px 6px;margin-right: 4px;" class="btn btn-outline-primary" (click) = "setUrlPdf(rowDocuments.url)" >
+                                <i class="fa fa-eye"></i>
+                            </button>
+                            <button type="button" style="padding: 2px 8px;" class="btn btn-outline-success" (click) = "downloadPdf(rowDocuments.url, rowDocuments.area_id)"><i class="fa fa-arrow-circle-down"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-7">
+        <div class="pdf_container_frame" ng-if="false">
+            <!-- Visor de pdf -->
+            <app-pdf-viewer [urlDocument]= "urlDocument" [areaId]= "areaId"  ></app-pdf-viewer>
+        </div>
+    </div>
+</div>

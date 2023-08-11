@@ -1,0 +1,513 @@
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.img_nav_desktop {
+    width: 200px;
+    height: auto;
+}
+
+.my_container {
+    max-width: 1440px;
+}
+
+.custom_btn_blue_white{
+    background: #00c4ef;
+    border-color: #ffffff;
+    font-size: 24px;
+    padding-top: 3px;
+}
+
+/* *************************** INICIA GENERAL BOOTSTRAP OVERRIDES ***********************************/
+
+.dropdown-item.active, .dropdown-item:active {
+    background: #00c4ef;
+}
+
+.carousel-item-next, .carousel-item-prev, .carousel-item.active {
+    transition:all 1s ease;
+}
+
+/* *************************** FINALIZA GENERAL BOOTSTRAP OVERRIDES ***********************************/
+
+/* *************************** INICIAN ESTILOS DE BANNER ***********************************/
+
+.showing_opacity{
+    opacity: 1 !important;
+    transition: all 2s ease !important;
+}
+
+.hidding_opacity{
+    opacity: 0;
+    transition: all 2s ease;
+}
+
+.img_banner_height_setter{
+    width:100%;
+    visibility: hidden;
+}
+
+.banner_section_container{
+    background: url("./assets/slide_1_a.jpg");
+    background-size: contain;
+}
+
+.slide_index{
+    position: absolute;
+    top: 12%;
+    width: 80%;
+    left: 10%;
+}
+
+.img_100{
+    width: 100%;
+}
+
+.img_80{
+    width: 100%;
+}
+
+.center{
+    justify-content: center;
+}
+
+.video{
+    padding: 15px;
+    background: white;
+    border-radius: 20px;
+    border: solid gray 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-width:1024px){
+    .slide_index{
+        top: 10%;
+    }
+}
+
+@media screen and (min-width:1280px){
+    .slide_index{
+        top: 12%;
+    }
+}
+
+@media screen and (min-width:1440px){
+    .slide_index{
+        top: 15%;
+        width: 75%;
+        left: calc(11%);
+    }
+}
+
+@media screen and (min-width:1670px){
+    .slide_index{
+        top: 16%;
+    }
+}
+
+@media screen and (min-width:1700px){
+    .slide_index{
+        top: 18%;
+    }
+}
+
+/* *************************** FINALIZAN ESTILOS DE BANNER ***********************************/
+
+/* *************************** INICIAN ESTILOS DEL MENÚ RESPONSIVO **************************** */
+
+.responsiveNav ul li:nth-last-child(2), .responsiveNav ul li:nth-last-child(1) {
+    border-right: 0px solid #fff;
+}
+
+.button_menu {
+    background: #00C4EF;
+    border-radius: 5px;
+    border-style: none;
+    color: white;
+    font-size: 20px !important;
+    margin: 0px 0px 0px 0px;
+    padding: 2px 20px 7px 20px;
+}
+
+.respHeader {
+    width: 100%;
+    background: #ffffffe0;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 900;
+    border-bottom: solid 4px #00C4EF;
+}
+
+.open {
+    transition: all 1s ease;
+    left: 0px !important;
+}
+
+.responsiveNav {
+    z-index: 1000;
+    width: 90%;
+    max-width: 1440px;
+    margin: 0px auto; //background: #fff;
+    left: -100%;
+    top: 52px;
+    margin-top: 0px! important;
+    transition: all 1s ease;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0px;
+}
+
+.menu_bar {
+    display: none;
+}
+
+.responsiveNav ul {
+    overflow: hidden;
+    list-style: none;
+    margin: 0px;
+    width: fit-content;
+    margin-top: 13px;
+    padding: 0px;
+}
+
+.responsiveNav ul li {
+    float: left;
+    border-right: 1px solid #00C4EF;
+}
+
+.responsiveNav ul li a {
+    color: #000;
+    font-size: 20px !important;
+    font-family: 'kohinoorbangla', Sans-serif !important;
+    /*padding:20px;*/
+    padding: 4px 29px 4px 29px;
+    display: block;
+    text-decoration: none;
+}
+
+.responsiveNav ul li span {
+    margin-right: 10px;
+}
+
+.responsiveNav ul li a:hover {
+    /*background:#037E8C;*/
+    color: #000;
+}
+
+@media screen and (max-width:1024px) {
+    .img_nav_desktop {
+        display: none;
+    }
+    .responsiveNav ul {
+        width: auto;
+        margin-top: 0px;
+    }
+    .responsiveNav {
+        width: 80%;
+        height: 100%;
+        left: -100%;
+        margin: 0;
+        position: fixed;
+        display: block;
+        top: 75px;
+        background: #00C4EF;
+    }
+    .responsiveNav ul li {
+        display: block;
+        float: none;
+        border-bottom: 1px solid rgba(255, 255, 255, .3);
+    }
+    .menu_bar {
+        display: block;
+        width: 100%;
+        background: #ccc;
+        position: fixed;
+        z-index: 1000;
+        top: 0px;
+        left: 0px;
+    }
+    .menu_bar .bt-menu {
+        display: block;
+        padding: 15px;
+        background: #fff;
+        color: #52c4e6;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 25px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        height: 75px;
+    }
+    .menu_bar span {
+        float: right;
+        font-size: 40px;
+    }
+    .responsiveNav ul li a {
+        color: #fff;
+        padding: 10px 29px 12px 29px;
+    }
+    .responsiveNav ul li a:hover {
+        color: #fff;
+    }
+}
+
+@media screen and (max-width:1181px) {
+    .responsiveNav ul li a {
+        font-size: 19px !important;
+        padding: 4px 16px 4px 18px;
+    }
+    .button_menu {
+        font-size: 19px !important;
+        padding: 2px 14px 7px 14px;
+    }
+}
+
+/*icon hamburger*/
+
+#nav-icon3 {
+    width: 10%;
+    height: 20px;
+    position: relative;
+    margin: 0px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+#nav-icon3 span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 40%;
+    background: #52c4e6;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .25s ease-in-out;
+    -moz-transition: .25s ease-in-out;
+    -o-transition: .25s ease-in-out;
+    transition: .25s ease-in-out;
+}
+
+@media screen and (max-width:500px) {
+    #nav-icon3 span {
+        width: 100%;
+    }
+}
+
+/* Icon 3 */
+
+#nav-icon3 span:nth-child(1) {
+    top: 0px;
+}
+
+#nav-icon3 span:nth-child(2), #nav-icon3 span:nth-child(3) {
+    top: 10px;
+}
+
+#nav-icon3 span:nth-child(4) {
+    top: 20px;
+}
+
+/* *************************** FINALIZAN ESTILOS DEL MENÚ RESPONSIVO **************************** */
+
+/* *************************** INICIAN ESTILOS DE SOBRE NOSOTROS **************************** */
+
+.center_auto {
+    margin: 0px auto;
+}
+
+.centered_title_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.about_section_container, .contact_centered_container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0px auto;
+}
+
+.about_section_container {
+    justify-content: space-between;
+    padding: 30px 10px 50px 10px;
+}
+
+.about_text_container {
+    border: 3px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 14px;
+    max-width: 49%;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.about_title {
+    font-size: 27px;
+}
+
+.about_blue_line {
+    width: 40px;
+    height: 1px;
+    display: block;
+    background: #00C4EF;
+    margin: 15px 0px;
+}
+
+.about_text {
+    font-size: 18px;
+    //font-weight: 300;
+}
+
+.footer_rights_reserved {
+    //height: 126px;
+    background: #0096B8;
+    padding: 28px;
+    margin: 0px;
+}
+
+.footer_text {
+    font-size: 19px;
+    line-height: 34px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.my_row {
+    justify-content: space-between; /* padding: 30px 10px 50px 10px;*/
+    display: flex; /* align-items: center;*/
+    flex-wrap: wrap;
+    margin: 0px auto;
+}
+
+/* *************************** FINALIZAN ESTILOS DE SOBRE NOSOTROS **************************** */
+
+/* *************************** INICIAN ESTILOS DE CONTACTO **************************** */
+
+.contact_section_container {
+    background: url("./assets/bg_contact.png");
+    height: 641px;
+    padding-top: 50px;
+}
+
+.contact_info_list {
+    list-style: none;
+    //font-size: 20px;
+    font-weight: 400;
+    //color: white;
+    line-height: 31px;
+    list-style: none;
+    font-size: 18px;
+    color: #1c3e95;
+    text-align: center;
+}
+
+.contact_info_list img {
+    margin-bottom: 10px;
+}
+
+.about_title_contact {
+    color: white;
+    font-size: 44px;
+}
+
+.contact_centered_container {
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* *************************** FINALIZAN ESTILOS DE CONTACTO **************************** */
+
+
+
+
+
+
+
+
+
+/* *************************** INICIAN ESTILOS DE PDF **************************** */
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  #toolbar {
+    display: flex;
+    align-items: center;
+    background-color: #555;
+    color: #fff;
+    padding: 0.5em;
+  }
+  #toolbar button,
+  #page-mode input {
+    color: currentColor;
+    background-color: transparent;
+    font: inherit;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    padding: 0.25em 0.5em;
+  }
+  #toolbar button:hover,
+  #toolbar button:focus,
+  #page-mode input:hover,
+  #page-mode input:focus {
+    color: lightGreen;
+  }
+  #page-mode {
+    display: flex;
+    align-items: center;
+    padding: 0.25em 0.5em;
+  }
+  
+  #viewport-container {
+    flex: 1;
+    background: #eee;
+    overflow: auto;
+  }
+  #viewport {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  #viewport > div {
+    text-align: center;
+    max-width: 100%;
+  }
+  #viewport canvas {
+    width: 100%;
+    box-shadow: 0 2px 5px gray;
+  }
+  #page-mode label{
+    margin:0px;
+  }
+  
+
+/* *************************** FINALIZAN ESTILOS DE PDF **************************** */

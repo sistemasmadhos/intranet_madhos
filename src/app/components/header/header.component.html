@@ -1,0 +1,85 @@
+<!-- INICIA MENÚ RESPONSIVO -->
+<header class="respHeader">
+    <div class="menu_bar">
+        <img src="../../../assets/logo_madhos_header_1.png"
+            style="width:200px; height:auto; position: absolute; top: 5px; left: 5px;" />
+        <!-- <a class="bt-menu" href="#"><i class="fas fa-bars"></i>
+    </a> -->
+        <a id="theToggleButt" class="bt-menu" href="javascript:;">
+            <div id="nav-icon3">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </a>
+    </div>
+
+    <nav id="responsiveNav" class="responsiveNav">
+        <a href="./"><img class="img_nav_desktop" src="../../../assets/logo_madhos_header_1.png" /></a>
+        <ul>
+            <li *ngIf="getRol() == 'ADMIN'">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                    aria-haspopup="true" aria-expanded="false">Administrar</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" routerLink="/admin-documentos/docs">Documentos</a>
+                    <a class="dropdown-item" routerLink="/admin-documentos/manuales">Manuales</a>
+                    <a class="dropdown-item" routerLink="/admin-anounces">Anuncios</a>
+                    <a class="dropdown-item" routerLink="/admin-links">Enlaces</a>
+                    <!-- <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a> -->
+                </div>
+            </li>
+            <li>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                    aria-haspopup="true" aria-expanded="false">Herramientas</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" (click)="changeAreaName('Manuales', -1)">Manuales</a>
+                    <a class="dropdown-item" routerLink="/links">Enlaces</a>
+                    <!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">PQRS</a> -->
+                    <!-- <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a> -->
+                </div>
+            </li>
+            <li>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                    aria-haspopup="true" aria-expanded="false">Docs. Calidad</a>
+
+                <div id="subMenuDocsContainer" class="dropdown-menu">
+                    <a class="dropdown-item" *ngFor="let area of areas" (click)="changeAreaName(area.nombre, area.id)">{{ area.nombre }}</a>
+                    <!-- 
+                        href="./documentos.html" iba arriba en etiqueta a
+                        <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a> --> 
+                </div>
+
+            </li>
+            <li><button class="btn btn-default" href="./" style="border: 1px solid;" (click)="logout()"><i class="fa fa-sign-out"></i> Salir</button></li>
+        </ul>
+    </nav>
+</header>
+<!-- FINALIZA MENÚ RESPONSIVO -->
+
+    <!-- INICIA MODAL SITIO EN CONSTRUCCIÓN -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Bienvenido</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Este módulo se encuentra actualmente en construcción
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FINALIZA MODAL SITIO EN CONSTRUCCIÓN -->
